@@ -11,7 +11,6 @@ public abstract class PageObjects {
     public PageObjects(WebDriver driver){
         this.driver = driver;
         driver.get("https://www.saucedemo.com/");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         PageFactory.initElements(driver, this);
     }
 }
