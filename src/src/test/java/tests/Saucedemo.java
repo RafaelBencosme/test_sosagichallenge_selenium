@@ -1,10 +1,8 @@
-import PageObjects.Checkout;
-import PageObjects.Inventory;
-import PageObjects.Login;
-import PageObjects.TopBar;
+package tests;
+
+import PageObjects.*;
 import com.github.javafaker.Faker;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -21,7 +19,7 @@ public class Saucedemo {
 
     @BeforeMethod
     public void setup() {
-        driver = new ChromeDriver();
+        driver = WebDriverFactory.getDriver();
         faker = new Faker();
         login = new Login(driver);
         inventory = new Inventory(driver);
@@ -153,6 +151,6 @@ public class Saucedemo {
 
     @AfterMethod
     public void tearDown() {
-        driver.quit();
+       WebDriverFactory.quitDriver();
     }
 }

@@ -1,19 +1,29 @@
 package PageObjects;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class TopBar extends PageObjects {
     public TopBar(WebDriver driver) {
         super(driver);
     }
 
+    @FindBy(id = "react-burger-menu-btn")
+    WebElement burgerMenu;
+
+    @FindBy(id = "logout_sidebar_link")
+    WebElement logOut;
+
+    @FindBy(id = "shopping_cart_container")
+    WebElement cartIcon;
+
     public void logOut() {
-        driver.findElement(By.id("react-burger-menu-btn")).click();
-        driver.findElement(By.id("logout_sidebar_link")).click();
+        burgerMenu.click();
+        logOut.click();
     }
 
     public void selectCartIcon() {
-        driver.findElement(By.id("shopping_cart_container")).click();
+        cartIcon.click();
     }
 }

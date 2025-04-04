@@ -1,37 +1,62 @@
 package PageObjects;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
-public class Checkout extends PageObjects{
-    public Checkout(WebDriver driver){
+public class Checkout extends PageObjects {
+    public Checkout(WebDriver driver) {
         super(driver);
     }
 
-    public void selectCheckout(){
-        driver.findElement(By.id("checkout")).click();
+    @FindBy(id = "checkout")
+    WebElement checkoutButton;
+
+    @FindBy(id = "first-name")
+    WebElement firstNameField;
+
+    @FindBy(id = "last-name")
+    WebElement lastNameField;
+
+    @FindBy(id = "postal-code")
+    WebElement zipCodeField;
+
+    @FindBy(id = "continue")
+    WebElement continueButton;
+
+    @FindBy(id = "finish")
+    WebElement finishButton;
+
+    @FindBy(className = "complete-header")
+    WebElement completeHeader;
+
+    @FindBy(className = "error-button")
+    WebElement formInvalidData;
+
+    public void selectCheckout() {
+        checkoutButton.click();
     }
 
     public void fillPersonalDataForm(
             String firstName,
             String lastName,
             String zipCode
-    ){
-        driver.findElement(By.id("first-name")).sendKeys(firstName);
-        driver.findElement(By.id("last-name")).sendKeys(lastName);
-        driver.findElement(By.id("postal-code")).sendKeys(zipCode);
-        driver.findElement(By.id("continue")).click();
+    ) {
+        firstNameField.sendKeys(firstName);
+        lastNameField.sendKeys(lastName);
+        zipCodeField.sendKeys(zipCode);
+        continueButton.click();
     }
 
-    public void selectFinish(){
-        driver.findElement(By.name("finish")).click();
+    public void selectFinish() {
+        finishButton.click();
     }
 
-    public boolean hasCompletedPurchaseHeader(){
-        return driver.findElement(By.className("complete-header")).isDisplayed();
+    public boolean hasCompletedPurchaseHeader() {
+        return completeHeader.isDisplayed();
     }
 
-    public boolean hasInvalidFormHelper(){
-        return driver.findElement(By.className("error-button")).isDisplayed();
+    public boolean hasInvalidFormHelper() {
+        return formInvalidData.isDisplayed();
     }
 }
